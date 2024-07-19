@@ -1,5 +1,4 @@
 import prisma from '@/lib/db';
-import { formatPrice } from '@/lib/utils';
 import { MoreHorizontal, PlusCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -29,33 +28,33 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-async function getProducts() {
-  const data = await prisma.product.findMany({
+async function getBanners() {
+  const data = await prisma.banner.findMany({
     orderBy: { createdAt: 'desc' },
   });
 
   return data;
 }
 
-const ProductsPage = async () => {
-  const data = await getProducts();
+const BannerPage = async () => {
+  const banners = await getBanners();
 
   return (
     <>
       <div className='flex items-center justify-end'>
-        <Button asChild className='flex items-center gap-x-2'>
-          <Link href='/dashboard/products/create'>
+        <Button asChild className='flex gap-x-2'>
+          <Link href='/dashboard/banner/create'>
             <PlusCircle className='h-5 w-5' />
-            <span>Add Product</span>
+            <span>Add Banner</span>
           </Link>
         </Button>
       </div>
 
-      <Card className='mt-4'>
+      <Card>
         <CardHeader>
-          <CardTitle>Products</CardTitle>
-          <CardDescription>
-            Manage your products and view sales performance
+          <CardTitle>Banners</CardTitle>
+          <CardDescription className='tracking-tight'>
+            Manage your banners and view sales performance
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -63,33 +62,24 @@ const ProductsPage = async () => {
             <TableHeader>
               <TableRow>
                 <TableHead>Image</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Price</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead className='text-right'>Actions</TableHead>
+                <TableHead>Title</TableHead>
+                <TableHead className='text-end'>Actions</TableHead>
               </TableRow>
             </TableHeader>
 
             <TableBody>
-              {data.map((product) => (
-                <TableRow key={product.id}>
+              {banners.map((banner) => (
+                <TableRow key={banner.id}>
                   <TableCell>
                     <Image
+                      alt='banner image'
+                      src={banner.imageString}
                       width={64}
                       height={64}
-                      src={product.images[0]}
-                      className='h-16 w-16 rounded-md object-cover'
-                      alt='product image'
+                      className='rounde-lg h-16 w-16 object-cover'
                     />
                   </TableCell>
-                  <TableCell>{product.name}</TableCell>
-                  <TableCell>{product.status}</TableCell>
-                  <TableCell>{formatPrice(product.price)}</TableCell>
-                  {/* <TableCell>{product.createdAt.toLocaleDateString()}</TableCell> */}
-                  <TableCell>
-                    {new Intl.DateTimeFormat('tr-TR').format(product.createdAt)}
-                  </TableCell>
+                  <TableCell className='font-medium'>{banner.title}</TableCell>
                   <TableCell className='text-end'>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -101,13 +91,10 @@ const ProductsPage = async () => {
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem asChild>
-                          <Link href={`/dashboard/products/${product.id}`}>Edit</Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild >
-                          <Link href={`/dashboard/products/${product.id}/delete`}>
-                          Delete
+                          <Link href={`/dashboard/banner/${banner.id}/delete`}>
+                            Delete
                           </Link>
-                          </DropdownMenuItem>
+                        </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </TableCell>
@@ -121,4 +108,4 @@ const ProductsPage = async () => {
   );
 };
 
-export default ProductsPage;
+export default BannerPage;

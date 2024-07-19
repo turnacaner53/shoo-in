@@ -64,6 +64,7 @@ const DashboardLayout = async ({ children }: { children: ReactNode }) => {
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
+
       {children}
     </div>
   );
