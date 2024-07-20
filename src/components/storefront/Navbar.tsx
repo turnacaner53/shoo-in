@@ -1,3 +1,5 @@
+import { Cart } from '@/lib/interfaces';
+import { redis } from '@/lib/redis';
 import {
   LoginLink,
   RegisterLink,
@@ -13,6 +15,9 @@ import UserDropdown from './UserDropdown';
 const Navbar = async () => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
+  const cart: Cart | null = await redis.get(`cart-${user?.id}`);
+
+  const total = cart?.items.reduce((acc, item) => acc + item.quantity, 0) || 0;
 
   return (
     <nav className='mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8'>
@@ -31,7 +36,7 @@ const Navbar = async () => {
             <Link href='/bag' className='group mr-2 flex items-center p-2'>
               <ShoppingBag className='h-6 w-6 text-gray-600 group-hover:text-primary' />
               <span className='ml-2 font-medium text-gray-600 group-hover:text-primary'>
-                4
+                {total}
               </span>
             </Link>
 
