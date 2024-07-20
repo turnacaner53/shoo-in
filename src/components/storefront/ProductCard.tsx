@@ -1,4 +1,5 @@
 import { formatPrice } from '@/lib/utils';
+import { Navigation } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -44,21 +45,23 @@ export default function ProductCard({ product }: ProductProps) {
       </Carousel>
 
       <div className='mt-2 flex items-center justify-between px-2'>
-        <h1 className='text-xl font-semibold'>{product.name}</h1>
+        <h1 className='text-xl font-semibold truncate'>{product.name}</h1>
         <h3 className='inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/10'>
           {formatPrice(product.price)}
         </h3>
       </div>
-      <p className='mt-2 line-clamp-2 text-sm text-gray-600'>
+      <p className='mt-2 line-clamp-1 truncate  text-sm text-gray-600'>
         {product.description}
       </p>
 
       <Button
         asChild
-        variant='outline'
-        className='mt-4 w-full border border-primary hover:bg-primary/50'
+        className='mt-4 w-full max-w-48 border border-primary hover:bg-primary/80'
       >
-        <Link href={`/product/${product.id}`}>Learn More!</Link>
+        <Link href={`/product/${product.id}`}>
+          Learn More!
+          <Navigation className='ml-4 h-5 w-5 text-white' />
+        </Link>
       </Button>
     </div>
   );

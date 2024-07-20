@@ -13,6 +13,7 @@ async function getProducts() {
       price: true,
     },
     orderBy: { createdAt: 'desc' },
+    take: 4,
   });
 
   return data;
@@ -24,7 +25,7 @@ export default async function FeaturedProducts() {
   return (
     <>
       <h2 className='text-2xl font-extrabold tracking-tight'>Featured Items</h2>
-      <div className='mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+      <div className='mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4'>
         {data.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
