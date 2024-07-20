@@ -9,6 +9,7 @@ const links = [
   { name: 'Orders', href: '/dashboard/orders' },
   { name: 'Products', href: '/dashboard/products' },
   { name: 'Banner Picture', href: '/dashboard/banner' },
+  { name: 'Site', href: '/' },
 ];
 
 const DashboardNavigation = () => {
