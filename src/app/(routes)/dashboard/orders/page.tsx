@@ -1,3 +1,6 @@
+import prisma from '@/lib/db';
+import { formatPrice } from '@/lib/utils';
+
 import {
   Card,
   CardContent,
@@ -13,9 +16,33 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { formatPrice } from '@/lib/utils';
 
-const OrdersPage = () => {
+async function getOrders() {
+  const data = await prisma.order.findMany({
+    select: {
+      createdAt: true,
+      status: true,
+      id: true,
+      amount: true,
+      User: {
+        select: {
+          firstName: true,
+          email: true,
+          profileImage: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
+  return data;
+}
+
+const OrdersPage = async () => {
+  const orders = await getOrders();
+
   return (
     <Card>
       <CardHeader className='px-7'>
@@ -34,18 +61,24 @@ const OrdersPage = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell>
-                <p className='font-medium'>John Doe</p>
-                <p className='hidden text-sm text-muted-foreground md:flex'>
-                  john_doe@gmail.com
-                </p>
-              </TableCell>
-              <TableCell>Sale</TableCell>
-              <TableCell>Successful</TableCell>
-              <TableCell>12-12-2021</TableCell>
-              <TableCell className='text-right'>{formatPrice(255)}</TableCell>
-            </TableRow>
+            {orders.map((order) => (
+              <TableRow key={order.id}>
+                <TableCell>
+                  <p className='font-medium'>{order.User?.firstName}</p>
+                  <p className='hidden text-sm text-muted-foreground md:flex'>
+                    {order.User?.email}
+                  </p>
+                </TableCell>
+                <TableCell>Order</TableCell>
+                <TableCell>{order?.status}</TableCell>
+                <TableCell>
+                  {new Intl.DateTimeFormat('tr-TR').format(order.createdAt)}
+                </TableCell>
+                <TableCell className='text-right'>
+                  {formatPrice(order.amount / 100)}
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </CardContent>

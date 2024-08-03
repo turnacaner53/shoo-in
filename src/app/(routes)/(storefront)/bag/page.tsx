@@ -1,4 +1,5 @@
-import { DeleteButton } from '@/components/SubmitButton';
+import { checkOut } from '@/app/actions';
+import { CheckoutButton, DeleteButton } from '@/components/SubmitButton';
 import { Cart } from '@/lib/interfaces';
 import { redis } from '@/lib/redis';
 import { formatPrice } from '@/lib/utils';
@@ -28,7 +29,7 @@ export default async function BagPage() {
 
   return (
     <div className='mx-auto mt-10 min-h-[55vh] max-w-2xl'>
-      {cart?.items.length === 0 ? (
+      {!cart || !cart.items ? (
         <div className='mt-20 flex min-h-[400px] flex-col items-center justify-center rounded-lg border-dashed p-8 text-center'>
           <div className='flex h-20 w-20 items-center justify-center rounded-full bg-primary/10'>
             <ShoppingBag className='h-10 w-10 text-primary' />
@@ -82,10 +83,9 @@ export default async function BagPage() {
               <p>SubTotal</p>
               <p className='text-primary'>{formatPrice(totalPrice)}</p>
             </div>
-
-            <Button size='lg' className='mt-4 w-full'>
-              Checkout
-            </Button>
+            <form action={checkOut}>
+              <CheckoutButton />
+            </form>
           </div>
         </div>
       )}

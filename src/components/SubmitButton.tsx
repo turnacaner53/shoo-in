@@ -79,12 +79,30 @@ export function DeleteButton() {
         </Button>
       ) : (
         <Button
-        type='submit'
+          type='submit'
           variant='link'
           size='icon'
           className='font-medium text-primary duration-200 hover:bg-primary hover:text-white'
         >
           <Trash2 className='h-5 w-5' />
+        </Button>
+      )}
+    </>
+  );
+}
+
+export function CheckoutButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <>
+      {pending ? (
+        <Button disabled size='lg' className='mt-4 w-full'>
+          <Loader2 className='mr-2 h-5 w-5 animate-spin' /> Please Wait
+        </Button>
+      ) : (
+        <Button type='submit' size='lg' className='mt-4 w-full'>
+          Checkout
         </Button>
       )}
     </>
