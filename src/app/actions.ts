@@ -37,11 +37,11 @@ export async function checkOut() {
       success_url:
         process.env.NODE_ENV === 'development'
           ? 'http://localhost:3000/payment/success'
-          : (process.env.VERCEL_URL as string) + 'payment/success',
+          : 'https://shoo-in.vercel.app/payment/success',
       cancel_url:
         process.env.NODE_ENV === 'development'
           ? 'http://localhost:3000/payment/cancel'
-          : (process.env.VERCEL_URL as string) + 'payment/cancel',
+          : 'https://shoo-in.vercel.app/payment/cancel',
       metadata: {
         userId: user.id,
       },

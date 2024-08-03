@@ -31,6 +31,6 @@ export async function GET() {
   return NextResponse.redirect(
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
-      : (process.env.VERCEL_SITE_URL as string),
+      : 'https://shoo-in.vercel.app/',
   );
 }
