@@ -6,19 +6,19 @@ export default function ProductLoading() {
       <div>
         <Skeleton className='h-[600px] w-full' />
         <div className='mt-6 grid grid-cols-5 gap-4'>
-            <Skeleton className='w-[100px] h-[100px]' />
-            <Skeleton className='w-[100px] h-[100px]' />
-            <Skeleton className='w-[100px] h-[100px]' />
-            <Skeleton className='w-[100px] h-[100px]' />
-            <Skeleton className='w-[100px] h-[100px]' />
+          <Skeleton className='h-[100px] w-[100px]' />
+          <Skeleton className='h-[100px] w-[100px]' />
+          <Skeleton className='h-[100px] w-[100px]' />
+          <Skeleton className='h-[100px] w-[100px]' />
+          <Skeleton className='h-[100px] w-[100px]' />
         </div>
       </div>
 
       <div className=''>
-        <Skeleton className='w-56 h-12' />
-        <Skeleton className='w-36 h-12 mt-4' />
-        <Skeleton className='w-full h-60 mt-4' />
-        <Skeleton className='w-full h-12 mt-4' />
+        <Skeleton className='h-12 w-56' />
+        <Skeleton className='mt-4 h-12 w-36' />
+        <Skeleton className='mt-4 h-60 w-full' />
+        <Skeleton className='mt-4 h-12 w-full' />
       </div>
     </div>
   );

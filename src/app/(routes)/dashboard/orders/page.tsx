@@ -1,5 +1,6 @@
 import prisma from '@/lib/db';
 import { formatPrice } from '@/lib/utils';
+import { unstable_noStore as noStore } from 'next/cache';
 
 import {
   Card,
@@ -41,6 +42,7 @@ async function getOrders() {
 }
 
 const OrdersPage = async () => {
+  noStore();
   const orders = await getOrders();
 
   return (

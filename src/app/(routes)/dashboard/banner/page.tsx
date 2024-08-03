@@ -1,5 +1,6 @@
 import prisma from '@/lib/db';
 import { MoreHorizontal, PlusCircle } from 'lucide-react';
+import { unstable_noStore as noStore } from 'next/cache';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -37,6 +38,7 @@ async function getBanners() {
 }
 
 const BannerPage = async () => {
+  noStore();
   const banners = await getBanners();
 
   return (

@@ -5,7 +5,7 @@ import { redis } from '@/lib/redis';
 import { stripe } from '@/lib/stripe';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import { redirect } from 'next/navigation';
-import Stripe from "stripe";
+import Stripe from 'stripe';
 
 export async function checkOut() {
   const { getUser } = getKindeServerSession();
@@ -38,7 +38,7 @@ export async function checkOut() {
       cancel_url: 'http://localhost:3000/payment/cancel',
       metadata: {
         userId: user.id,
-      }
+      },
     });
 
     return redirect(session.url as string);

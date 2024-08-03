@@ -5,6 +5,7 @@ import { redis } from '@/lib/redis';
 import { formatPrice } from '@/lib/utils';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import { ShoppingBag } from 'lucide-react';
+import { unstable_noStore as noStore } from 'next/cache';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -14,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { deleteItem } from './actions';
 
 export default async function BagPage() {
+  noStore();
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 

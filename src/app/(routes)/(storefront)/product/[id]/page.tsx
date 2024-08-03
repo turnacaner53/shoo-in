@@ -1,12 +1,12 @@
+import { ShoppingBagButton } from '@/components/SubmitButton';
 import FeaturedProducts from '@/components/storefront/FeaturedProducts';
 import ImageSlider from '@/components/storefront/ImageSlider';
 import prisma from '@/lib/db';
 import { formatPrice } from '@/lib/utils';
 import { StarIcon } from 'lucide-react';
+import { unstable_noStore as noStore } from 'next/cache';
 import { notFound } from 'next/navigation';
 
-
-import { ShoppingBagButton } from '@/components/SubmitButton';
 import { addItem } from '../../bag/actions';
 
 async function getProduct(productId: string) {
@@ -31,6 +31,7 @@ export default async function ProductDetails({
 }: {
   params: { id: string };
 }) {
+  noStore();
   const product = await getProduct(params.id);
   const addProductToShoppingCart = addItem.bind(null, product.id);
 
@@ -54,7 +55,7 @@ export default async function ProductDetails({
           </div>
           <p className='mt-6 text-base text-gray-700'>{product.description}</p>
           <form action={addProductToShoppingCart}>
-          <ShoppingBagButton />
+            <ShoppingBagButton />
           </form>
         </div>
       </div>

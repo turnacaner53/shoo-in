@@ -1,12 +1,12 @@
 import { Check } from 'lucide-react';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import Link from 'next/link';
 
 export default function SuccessRoute() {
   return (
-    <section className='min-h-[80vh] flex w-full items-center justify-center'>
+    <section className='flex min-h-[80vh] w-full items-center justify-center'>
       <Card className='w-[350px]'>
         <div className='p-6'>
           <div className='flex w-full justify-center'>

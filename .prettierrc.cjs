@@ -8,6 +8,14 @@ module.exports = {
   singleAttributePerLine: false,
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
-  importOrder: ['^react(.*)', '<THIRD_PARTY_MODULES>', '@/(components/ui*)', '^[./]'],
-  plugins: ['@trivago/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
+  importOrder: [
+    '^react(.*)',
+    '<THIRD_PARTY_MODULES>',
+    '@/(components/ui*)',
+    '^[./]',
+  ],
+  plugins: [
+    '@trivago/prettier-plugin-sort-imports',
+    'prettier-plugin-tailwindcss',
+  ],
 };

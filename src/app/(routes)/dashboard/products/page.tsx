@@ -1,6 +1,7 @@
 import prisma from '@/lib/db';
 import { formatPrice } from '@/lib/utils';
 import { MoreHorizontal, PlusCircle } from 'lucide-react';
+import { unstable_noStore as noStore } from 'next/cache';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -38,6 +39,7 @@ async function getProducts() {
 }
 
 const ProductsPage = async () => {
+  noStore();
   const data = await getProducts();
 
   return (
@@ -101,13 +103,17 @@ const ProductsPage = async () => {
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem asChild>
-                          <Link href={`/dashboard/products/${product.id}`}>Edit</Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild >
-                          <Link href={`/dashboard/products/${product.id}/delete`}>
-                          Delete
+                          <Link href={`/dashboard/products/${product.id}`}>
+                            Edit
                           </Link>
-                          </DropdownMenuItem>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link
+                            href={`/dashboard/products/${product.id}/delete`}
+                          >
+                            Delete
+                          </Link>
+                        </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </TableCell>

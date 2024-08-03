@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 
 import prisma from '@/lib/db';
+import { unstable_noStore as noStore } from 'next/cache';
 
 import ProductCard, { LoadingProductCard } from './ProductCard';
 
@@ -22,6 +23,7 @@ async function getProducts() {
 }
 
 export default function FeaturedProducts() {
+  noStore();
   return (
     <>
       <h2 className='text-2xl font-extrabold tracking-tight'>Featured Items</h2>

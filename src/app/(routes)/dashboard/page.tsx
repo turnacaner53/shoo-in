@@ -2,6 +2,7 @@ import Chart from '@/components/dashboard/Chart';
 import DashboardStats from '@/components/dashboard/DashboardStats';
 import RecentSales from '@/components/dashboard/RecentSales';
 import prisma from '@/lib/db';
+import { unstable_noStore as noStore } from 'next/cache';
 
 import {
   Card,
@@ -35,13 +36,14 @@ async function getData() {
 
   const result = data.map((item) => ({
     date: new Intl.DateTimeFormat('en-US', {}).format(item.createdAt),
-    revenue: item.amount /100,
+    revenue: item.amount / 100,
   }));
 
   return result;
 }
 
 const Dashboard = async () => {
+  noStore();
   const chartData = await getData();
 
   return (

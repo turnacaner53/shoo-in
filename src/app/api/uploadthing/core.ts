@@ -23,7 +23,7 @@ export const ourFileRouter = {
       return { uploadedBy: metadata.userId };
     }),
 
-    bannerImageRoute: f({ image: { maxFileSize: '4MB', maxFileCount: 1 } })
+  bannerImageRoute: f({ image: { maxFileSize: '4MB', maxFileCount: 1 } })
     .middleware(async ({ req }) => {
       const { getUser } = getKindeServerSession();
       const user = await getUser();

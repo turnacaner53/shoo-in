@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card';
 
 export default function CancelRoute() {
   return (
-    <section className='min-h-[80vh] flex w-full items-center justify-center'>
+    <section className='flex min-h-[80vh] w-full items-center justify-center'>
       <Card className='w-[350px]'>
         <div className='p-6'>
           <div className='flex w-full justify-center'>

@@ -6,6 +6,7 @@ import {
   getKindeServerSession,
 } from '@kinde-oss/kinde-auth-nextjs/server';
 import { CircleUser, MenuIcon } from 'lucide-react';
+import { unstable_noStore as noStore } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
@@ -20,6 +21,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const DashboardLayout = async ({ children }: { children: ReactNode }) => {
+  noStore();
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 

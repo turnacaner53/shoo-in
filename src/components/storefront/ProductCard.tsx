@@ -70,13 +70,13 @@ export default function ProductCard({ product }: ProductProps) {
 
 export function LoadingProductCard() {
   return (
-    <div className="flex flex-col">
-      <Skeleton className="w-full h-[330px]" />
-      <div className="flex flex-col mt-2 gap-y-2">
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="w-full h-6" />
+    <div className='flex flex-col'>
+      <Skeleton className='h-[330px] w-full' />
+      <div className='mt-2 flex flex-col gap-y-2'>
+        <Skeleton className='h-4 w-full' />
+        <Skeleton className='h-6 w-full' />
       </div>
-      <Skeleton className="w-full h-10 mt-5" />
+      <Skeleton className='mt-5 h-10 w-full' />
     </div>
   );
 }

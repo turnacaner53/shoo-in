@@ -51,7 +51,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
               index === mainImageIndex
                 ? 'border-2 border-primary'
                 : 'border border-gray-200',
-                'relative overflow-hidden rounded-lg cursor-pointer'
+              'relative cursor-pointer overflow-hidden rounded-lg',
             )}
             key={index}
             onClick={() => setMainImageIndex(index)}
