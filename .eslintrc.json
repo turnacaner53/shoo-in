@@ -20,7 +20,7 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
-    "no-unused-vars": 1,
+    "no-unused-vars": 0,
     "no-console": "off",
     "@next/next/no-img-element": "off"
   }
